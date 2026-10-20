@@ -17,28 +17,34 @@ const projects = [
   {
     number: "01",
     title: "Personal Portfolio",
-    description:
-      "A responsive portfolio to showcase my skills, projects, and professional journey.",
+    description: "A responsive portfolio showcasing my projects.",
     tech: ["React", "CSS", "JavaScript"],
     status: "In progress",
+    github: "",
+    demo: "",
   },
   {
     number: "02",
     title: "Student Management System",
     description:
-      "A planned full-stack application for managing student records with CRUD operations.",
+      "A full-stack application for managing student records with CRUD operations.",
     tech: ["React", "Node.js", "MongoDB"],
     status: "Planned",
+    github: "",
+    demo: "",
   },
   {
     number: "03",
     title: "Expense Tracker",
     description:
-      "A planned application for recording income, tracking expenses, and viewing summaries.",
+      "An application for tracking income, expenses, and financial summaries.",
     tech: ["MERN", "Charts", "Authentication"],
     status: "Planned",
+    github: "",
+    demo: "",
   },
 ];
+
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -201,24 +207,41 @@ function App() {
             <p className="section-description">
               My portfolio and full-stack learning projects.
             </p>
+            
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <article className="project-card" key={project.number}>
+                <div className="project-top">
+                  <span className="project-number">{project.number}</span>
+                  <span className="project-status">{project.status}</span>
+                </div>
 
-            <div className="projects-grid">
-              {projects.map((project) => (
-                <article className="project-card" key={project.number}>
-                  <div className="project-top">
-                    <span className="project-number">{project.number}</span>
-                    <span className="project-status">{project.status}</span>
-                  </div>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tech-list">
-                    {project.tech.map((tech) => (
-                      <span key={tech}>{tech}</span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="tech-list">
+                  {project.tech.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+
+                <div className="project-links">
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noreferrer">
+                      GitHub ↗
+                    </a>
+                  )}
+
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noreferrer">
+                      Live Demo ↗
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
             <p className="note">
               Replace planned projects with real demos and repository links
               as you complete them. Don't claim unfinished work is complete.
@@ -237,11 +260,20 @@ function App() {
               software development opportunities.
             </p>
             <a
+              className="button button-secondary"
+              href="/Aman_Prajapati_Resume.pdf"
+              download="Aman_Prajapati_Resume.pdf"
+            >
+              Download Resume ↓
+            </a>
+            
+            <a
               className="button button-primary"
-              href="mailto:amanprajapati0777553@gmail.com"
+              href="mailto:amanprajapati0777553@gmail.com?subject=Portfolio%20Inquiry"
             >
               Email Me ↗
             </a>
+
             <div className="social-links">
               <a
                 href="https://github.com/amanprajapati0777553"

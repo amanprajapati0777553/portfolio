@@ -519,3 +519,45 @@
     flex-basis: 100%;
   }
 }
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.project-links a {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.skill-card {
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: #4d6d9f;
+}
+
+.nav-links a,
+.social-links a,
+.project-links a {
+  transition: color 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .project-card,
+  .button {
+    transition: none;
+    transform: none;
+  }
+}
