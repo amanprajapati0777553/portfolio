@@ -22,7 +22,7 @@ const projects = [
     tech: ["React", "CSS", "JavaScript"],
     status: "Completed",
     github: "https://github.com/amanprajapati0777553/auspify-internship-portfolio.git",
-    demo: "https://YOUR_DEPLOYED_SITE_URL"
+    demo: "https://auspify-internship-portfolio.vercel.app/"
   },
   {
     number: "02",
