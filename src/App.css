@@ -657,3 +657,69 @@ section {
     transform: none;
   }
 }
+
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.resume-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.resume-button:focus-visible,
+.project-links a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+.form-field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: #dc4545;
+}
+
+.form-error {
+  margin: 0;
+  color: #dc4545;
+  font-size: 0.9rem;
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible,
+#contact button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}

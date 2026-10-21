@@ -1,3 +1,4 @@
+
 import About from "./components/About";
 import { useState } from "react";
 import "./App.css";
@@ -17,21 +18,20 @@ const projects = [
   {
     number: "01",
     title: "Personal Portfolio",
-    description: "A responsive portfolio showcasing my projects.",
+    description: "A responsive portfolio showcasing my skills and projects.",
     tech: ["React", "CSS", "JavaScript"],
-    status: "In progress",
-    github: "",
-    demo: "",
+    status: "Completed",
+    github: "https://github.com/amanprajapati0777553/auspify-internship-portfolio.git",
+    demo: "https://YOUR_DEPLOYED_SITE_URL"
   },
   {
     number: "02",
     title: "Student Management System",
-    description:
-      "A full-stack application for managing student records with CRUD operations.",
-    tech: ["React", "Node.js", "MongoDB"],
-    status: "Planned",
+    description: "A web application to manage student records.",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+    status: "In Progress",
     github: "",
-    demo: "",
+    demo: ""
   },
   {
     number: "03",
@@ -50,6 +50,64 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
+
+  
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  message: "",
+});
+
+const [formErrors, setFormErrors] = useState({});
+const [formStatus, setFormStatus] = useState("");
+
+function handleContactChange(event) {
+  const { name, value } = event.target;
+
+  setFormData((previous) => ({
+    ...previous,
+    [name]: value,
+  }));
+
+  setFormErrors((previous) => ({
+    ...previous,
+    [name]: "",
+  }));
+
+  setFormStatus("");
+}
+
+function handleContactSubmit(event) {
+  event.preventDefault();
+
+  const errors = {};
+
+  if (!formData.name.trim()) {
+    errors.name = "Please enter your name.";
+  }
+
+  if (
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
+  ) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (formData.message.trim().length < 10) {
+    errors.message = "Message must contain at least 10 characters.";
+  }
+
+  setFormErrors(errors);
+
+  if (Object.keys(errors).length > 0) {
+    setFormStatus("");
+    return;
+  }
+
+  setFormStatus(
+    "Validation successful! Your message has not been sent."
+  );
+}
+
 
   return (
     <>
@@ -227,17 +285,27 @@ function App() {
 
                 <div className="project-links">
                   {project.github && (
-                    <a href={project.github} target="_blank" rel="noreferrer">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       GitHub ↗
                     </a>
                   )}
 
                   {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noreferrer">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Live Demo ↗
                     </a>
                   )}
                 </div>
+
+
               </article>
             ))}
           </div>
@@ -250,6 +318,75 @@ function App() {
         </section>
 
         <section className="section section-alt" id="contact">
+          
+        <form onSubmit={handleContactSubmit} noValidate>
+          <div className="form-field">
+            <label htmlFor="contact-name">Name</label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              value={formData.name}
+              onChange={handleContactChange}
+              aria-invalid={Boolean(formErrors.name)}
+              aria-describedby={formErrors.name ? "name-error" : undefined}
+            />
+            {formErrors.name && (
+              <p id="name-error" className="form-error" role="alert">
+                {formErrors.name}
+              </p>
+            )}
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="contact-email">Email</label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              value={formData.email}
+              onChange={handleContactChange}
+              aria-invalid={Boolean(formErrors.email)}
+              aria-describedby={formErrors.email ? "email-error" : undefined}
+            />
+            {formErrors.email && (
+              <p id="email-error" className="form-error" role="alert">
+                {formErrors.email}
+              </p>
+            )}
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={5}
+              value={formData.message}
+              onChange={handleContactChange}
+              aria-invalid={Boolean(formErrors.message)}
+              aria-describedby={
+                formErrors.message ? "message-error" : undefined
+              }
+            />
+            {formErrors.message && (
+              <p id="message-error" className="form-error" role="alert">
+                {formErrors.message}
+              </p>
+            )}
+          </div>
+
+          <button type="submit">Validate Message</button>
+
+          {formStatus && (
+            <p role="status" aria-live="polite">
+              {formStatus}
+            </p>
+          )}
+        </form>
+
           <div className="container contact-card">
             <p className="eyebrow">HAVE A PROJECT IN MIND?</p>
             <h2 className="section-title">
